@@ -1,0 +1,160 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Loan Default Prediction</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+   <link
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+     crossorigin="anonymous"
+   />
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+<link rel="stylesheet" href="{% static "css/form.css" %}">
+<link href="{% static "css/all.min.css" %}" rel="stylesheet" type="text/css">
+<link href="{% static "css/nav.css" %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static "css/form2.css" %}">
+<script
+src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+crossorigin="anonymous"
+></script>
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"
+></script>
+<script nonce="6b69a8c9-c6fe-48fb-9b96-012280eb67f3">(function(w,d){!function(a,e,t,r){a.zarazData=a.zarazData||{};a.zarazData.executed=[];a.zaraz={deferred:[]};a.zaraz.q=[];a.zaraz._f=function(e){return function(){var t=Array.prototype.slice.call(arguments);a.zaraz.q.push({m:e,a:t})}};for(const e of["track","set","ecommerce","debug"])a.zaraz[e]=a.zaraz._f(e);a.zaraz.init=()=>{var t=e.getElementsByTagName(r)[0],z=e.createElement(r),n=e.getElementsByTagName("title")[0];n&&(a.zarazData.t=e.getElementsByTagName("title")[0].text);a.zarazData.x=Math.random();a.zarazData.w=a.screen.width;a.zarazData.h=a.screen.height;a.zarazData.j=a.innerHeight;a.zarazData.e=a.innerWidth;a.zarazData.l=a.location.href;a.zarazData.r=e.referrer;a.zarazData.k=a.screen.colorDepth;a.zarazData.n=e.characterSet;a.zarazData.o=(new Date).getTimezoneOffset();a.zarazData.q=[];for(;a.zaraz.q.length;){const e=a.zaraz.q.shift();a.zarazData.q.push(e)}z.defer=!0;for(const e of[localStorage,sessionStorage])Object.keys(e||{}).filter((a=>a.startsWith("_zaraz_"))).forEach((t=>{try{a.zarazData["z_"+t.slice(7)]=JSON.parse(e.getItem(t))}catch{a.zarazData["z_"+t.slice(7)]=e.getItem(t)}}));z.referrerPolicy="origin";z.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a.zarazData)));t.parentNode.insertBefore(z,t)};["complete","interactive"].includes(e.readyState)?zaraz.init():a.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,0,"script");})(window,document);
+</script>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+      <h5 class="mt-2">Loan Default Predictor</h5>
+</nav>
+
+<div class="container">
+
+
+  <!-- <h5 class="d-flex justify-content-center">{{organization}}</h5> -->
+  <div class="container card shadow d-flex justify-content-center mt-5 mb-5">
+     <ul class="nav nav-pills mb-3 shadow-sm" id="pills-tab" role="tablist">
+       <li class="nav-item">
+       </li>
+
+     </ul>
+
+     <!-- content -->
+     <div class="tab-content" id="pills-tabContent p-3">
+       <!-- 1st card -->
+       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+         <form action="predictionpost" method="post" class="mt-3" enctype="multipart/form-data">
+           <div class="row search">
+            <div class="col">
+              <select class="form-control" name="grade" placeholder="Grade">
+                <option value="">Grade</option>
+                <option value="1">A</option>
+                <option value="2">B</option>
+                <option value="3">C</option>
+                <option value="4">D</option>
+                <option value="5">E</option>
+                <option value="6">F</option>
+                <option value="7">G</option>
+              </select>
+            </div>
+            <div class="col">
+              <input type="text" name="annualinc" class="form-control" placeholder="Annual Income">
+            </div>
+          </div><br>
+
+          <div class="row search">
+           <div class="col">
+             <input type="text" name="shortemp" class="form-control" placeholder="Short Emp.">
+           </div>
+           <div class="col">
+             <input type="text" name="emplength" class="form-control" placeholder="Emp. Length">
+           </div>
+         </div><br>
+
+         <div class="row search">
+          <div class="col">
+            <select class="form-control" name="ownershiptype" placeholder="Ownership Type">
+              <option value="">Ownership Type</option>
+              <option value="1">RENT</option>
+              <option value="2">OWN</option>
+              <option value="3">MORTGAGE</option>
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" name="dti" class="form-control" placeholder="DTI">
+          </div>
+        </div><br>
+
+        <div class="row search">
+         <div class="col">
+           <select class="form-control" name="purpose" placeholder="Purpose">
+             <option value="">Purpose</option>
+             <option value="1">Credit Card</option>
+             <option value="2">Debt Consolidation</option>
+             <option value="3">Medical</option>
+             <option value="5">Home Improvement</option>
+             <option value="6">Small Business</option>
+             <option value="7">Major Purchase</option>
+             <option value="8">Vacation</option>
+             <option value="9">Car</option>
+             <option value="10">House</option>
+             <option value="11">Moving</option>
+             <option value="12">Wedding</option>
+             <option value="4">Other</option>
+           </select>
+         </div>
+         <div class="col">
+           <select class="form-control" name="term" placeholder="term">
+             <option value="">Term</option>
+             <option value="0">36 Months</option>
+             <option value="1">60 Months</option>
+           </select>
+         </div>
+       </div><br>
+
+       <div class="row search">
+        <div class="col">
+          <input type="text" name="lastdelinqnone" class="form-control" placeholder="Last Delinq. None">
+        </div>
+        <div class="col">
+          <input type="text" name="revolutil" class="form-control" placeholder="Revol. Util.">
+        </div>
+      </div><br>
+
+      <div class="row search">
+       <div class="col">
+         <input type="text" name="totalreclatefee" class="form-control" placeholder="Total Rec. Late Fee">
+       </div>
+       <div class="col">
+         <input type="text" name="odratio" class="form-control" placeholder="OD Ratio">
+       </div>
+     </div><br>
+
+         <div class="search">
+           <input type="submit" class="applybtn btn-grad" name="" value="Make Prediction">
+       </div>
+     </form>
+
+       </div>
+     </div>
+   </div>
+   <p class="text-center">A project by <strong>Mohneet Sandhu</strong></p>
+</div>
+</body>
